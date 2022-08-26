@@ -1,18 +1,35 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
-import {motion} from 'framer-motion'
+import { motion } from 'framer-motion'
+import Link from 'next/link'
 
 const Home: NextPage = () => {
+  let status = 1;
+  var intro = "Hii!! Je ta'ime Danendra";
+  const toogleLang = async () => {
+    console.log("toogleLang");
+    if (!status) {
+      console.log("toogleLang 1");
+      intro = "Hii!! Je ta'ime Danendra";
+      status = 1;
+    }
+    else {
+      console.log("toogleLang 2");
+      intro = "Hello!! My Name Is Danendra";
+      status = 0;
+    }
+  }
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center py-2 dark:bg-slate-800 dark:text-white">
-      <Head>
-        <title>Danendra&apos;s Portof</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+    <div>
+      <div className="flex min-h-screen flex-col items-center justify-center py-2 dark:bg-slate-800 dark:text-white">
+        <Head>
+          <title>Danendra&apos;s Portof</title>
+          <link rel="icon" href="/favicon.ico" />
+        </Head>
 
-      <main className="flex w-full flex-1 flex-col items-center justify-center px-20 text-center">
-        <motion.div initial="hidden" animate="visible" variants={{
+        <main className="flex w-full flex-1 flex-col items-center justify-center px-20 text-center h-screen">
+          <motion.div initial="hidden" animate="visible" variants={{
             hidden: {
               opacity: 0,
               y: -100,
@@ -26,72 +43,75 @@ const Home: NextPage = () => {
               },
             },
           }}>
-        <h1 className="text-6xl font-bold">
-          Welcome to{' '}
-          <a className="text-blue-700">
-            My Portofolio
-          </a>
-        </h1>
-        </motion.div>
-        
-        <motion.div className='mt-20' whileHover={{scale:1.2}} whileTap={{scale: 0.8}}>
-          <button className="rounded-full bg-blue-50 text-white font-bold py-2 px-4">See More</button>
-        </motion.div>
+            <h1 className="text-6xl font-bold">
+              Welcome to{' '}
+              My Portofolio
+            </h1>
+          </motion.div>
 
-        {/* <div className="mt-6 flex max-w-4xl flex-wrap items-center justify-around sm:w-full">
-          <a
-            href="https://nextjs.org/docs"
-            className="mt-6 w-96 rounded-xl border p-6 text-left hover:text-blue-600 focus:text-blue-600"
-          >
-            <h3 className="text-2xl font-bold">Documentation &rarr;</h3>
-            <p className="mt-4 text-xl">
-              Find in-depth information about Next.js features and its API.
-            </p>
-          </a>
+          <motion.div className='mt-20' initial="hidden" animate="visible" variants={{
+            hidden: {
+              opacity: 0,
+              y: +100,
+            },
+            visible: {
+              opacity: 1,
+              y: 0,
+              transition: {
+                delay: 0.5,
+                duration: 0.5,
+              },
+            },
+          }} whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.8 }}>
+            <button className="rounded-full bg-blue-500 text-white font-bold py-2 px-4">
+              <Link href="#my-name">
+                See More
+              </Link>
+            </button>
+          </motion.div>
+        </main>
+      </div>
 
-          <a
-            href="https://nextjs.org/learn"
-            className="mt-6 w-96 rounded-xl border p-6 text-left hover:text-blue-600 focus:text-blue-600"
-          >
-            <h3 className="text-2xl font-bold">Learn &rarr;</h3>
-            <p className="mt-4 text-xl">
-              Learn about Next.js in an interactive course with quizzes!
-            </p>
-          </a>
+      <div className='grid grid-rows-2 grid-flow-col gap-4 w-full justify-items-center align-middle items-center h-screen dark:bg-slate-800 dark:text-white' id='my-name'>
+        <div className='row-span-2'>
+          {/* Load image */}
+          <motion.div initial="hidden" animate="visible" variants={{
+            hidden: {
+              opacity: 0,
+              x: -100,
+            },
+            visible: {
+              opacity: 1,
+              x: 0,
+              transition: {
+                delay: 0.5,
+                duration: 0.5,
+              },
+            },
+          }}>
+            <Image
+              src="/images/danen.png"
+              alt="Picture of the author"
+              width={200}
+              height={200}
+            />
+          </motion.div>
+        </div>
+        <div className='grid row-span-2 w-full align-middle items-center'>
+          <div className='items-center'>
+            <div className="flex">
+              <h1 className='py-12 text-3xl flex-none gap-5'>{intro}</h1>
+              <button className='justify-items-end flex-auto' onClick={toogleLang}>What?</button>
+            </div>
+          </div>
+        </div>
+      </div>
 
-          <a
-            href="https://github.com/vercel/next.js/tree/canary/examples"
-            className="mt-6 w-96 rounded-xl border p-6 text-left hover:text-blue-600 focus:text-blue-600"
-          >
-            <h3 className="text-2xl font-bold">Examples &rarr;</h3>
-            <p className="mt-4 text-xl">
-              Discover and deploy boilerplate example Next.js projects.
-            </p>
-          </a>
-
-          <a
-            href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className="mt-6 w-96 rounded-xl border p-6 text-left hover:text-blue-600 focus:text-blue-600"
-          >
-            <h3 className="text-2xl font-bold">Deploy &rarr;</h3>
-            <p className="mt-4 text-xl">
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div> */}
-      </main>
-
-      {/* <footer className="flex h-24 w-full items-center justify-center border-t">
-        <a
-          className="flex items-center justify-center gap-2"
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-        </a>
-      </footer> */}
+      <style jsx global>{`
+      *{
+        scroll-behavior: smooth;
+      }
+      `}</style>
     </div>
   )
 }
